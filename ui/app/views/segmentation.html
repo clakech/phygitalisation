@@ -1,0 +1,142 @@
+<div class="grey lighten-3">
+
+  <section class="products-section">
+
+    <div class="segmentation">
+      <h4 class="green-text" ng-click="toggleFullScreen();">Bien choisir :</h4>
+
+      <div ng-if="criterion.length == 0" class="col s12 center valign-demo valign-wrapper">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="criteria row">
+        <div ng-repeat="criterion in criteria track by $index" class="criterion animate-repeat col s12">
+          <div class="card"
+               ng-class="{clickable: criterion.selectedSegment}">
+
+            <div class="card-content">
+
+              <div class="criterion-title">
+                {{criterion.description}}
+                <div class="icon-create" ng-show="criterion.selectedSegment" ng-click="resetSegments(criterion, $index);"></div>
+              </div>
+
+              <div
+                class="selected-segment ng-animate text-grey text-lighten-5 green"
+                ng-show="criterion.selectedSegment" ng-click="resetSegments(criterion, $index);">
+                {{criterion.selectedSegment.designation}}&nbsp;
+              </div>
+
+              <div class="segments" ng-hide="criterion.selectedSegment">
+                <div class="segment" ng-repeat="segment in criterion.segment"
+                     ng-click="filterSegment(criterion, segment);">
+
+                  <div class="segment-image image-ratio-preserved"
+                       ng-class="{hide: !segment.image}"
+                       style="{{'background-image: url(' + segment.image + ');'}}">
+                  </div>
+
+                  <div class="segment-info">
+                    <div class="segment-description"
+                         ng-if="segment.description"
+                         title="{{segment.description}}">
+
+                      <div class="segment-description-mask">&nbsp;</div>
+                      {{segment.description}}
+                    </div>
+
+                    <div class="segment-button waves-effect waves-light btn grey-text text-lighten-5 green"
+                         title="{{segment.description}}">
+                      {{segment.description}}
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-if="displayFinish"
+             class="criterion animate-repeat col s12 id="top"">
+
+          <div class="card green">
+            <div class="card-content">
+              <p class="valign finish-message grey-text text-lighten-5 ">
+                {{totalContentsCount}} produits correspondent à vos critères !
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-bloc">
+      <div ng-if="criterionTab.criterion">
+        <div ng-class="{clickable: criterionTab.criterion.selectedSegment}">
+          <div class="tab" >
+            <div class="tab-segment" ng-repeat="segment in criterionTab.criterion.segment"
+                ng-click="tabFilterSegment(criterionTab.criterion, segment, -1);">
+
+              <div class="tab-button segment-button waves-effect waves-light btn grey-text text-lighten-5 grey"
+                      ng-class="{ active: criterionTab.criterion.selectedSegment.href===segment.href}"
+                       title="{{segment.description}}">
+                    {{segment.description}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="products" contents-list current-segments-ids="currentSegmentsIds" content-href="familyHref" boost="boost" total-contents-count="totalContentsCount">
+      </div>
+    </div>
+  </section>
+</div>
+

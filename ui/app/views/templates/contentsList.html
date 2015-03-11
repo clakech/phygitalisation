@@ -1,0 +1,38 @@
+<div class="col s12" >
+  <h4 class="green-text">{{totalContentsCount}} Articles correspondants :</h4>
+
+  <div class="row">
+    <ul class="contents-list">
+      <li ng-repeat="content in contents" class="animate-repeat col s4 product-container"
+          ng-class="{serie: content.modelType === 'Serie', shadowed: content.modelType !== 'Product' || !hasLed(content.id)}">
+
+          <div class="serie-shadow card" ng-if="content.modelType === 'Serie'"></div>
+          <div class="serie-shadow2 card" ng-if="content.modelType === 'Serie'"></div>
+
+          <div class="card product" ng-class="content.modelType">
+            <div class="product-image image-ratio-preserved-inside"
+                 style="{{'background-image: url(' + content.image + ');'}}">
+            </div>
+            <div class="card-content">
+              <div class="title" title="{{content.designation}}">
+                <div class="title-mask">&nbsp;</div>
+                {{content.designation}}
+              </div>
+              <div class="subtitle grey-text text-lighten-1" title="{{content.reference}}">
+                <div class="subtitle-mask">&nbsp;</div>
+                {{content.reference}}
+              </div>
+              <div class="price orange-text darken-4-text">
+                {{content.prix ? content.prix + '€' : '&nbsp;'}}
+              </div>
+            </div>
+          </div>
+
+          <div class="led-image" ng-if="hasLed(content.id)">
+            <img src="images/led.png" />
+          </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
