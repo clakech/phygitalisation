@@ -2,7 +2,6 @@ var config = require('./config');
 var arduino = require('./arduino');
 var ledstrip = require('./ledstrip');
 var expressApp = require('./express');
-var _ = require('underscore');
 
 var ledStripPromise;
 

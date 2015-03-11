@@ -5,26 +5,17 @@ var q = require('q');
 
 var arduino = null;
 
-var arduinolastCommandPromise = q.when();
 var arduinoCommand = {
     sendCommand: function (cmd) {
+        logger.log('sendcommand ' + cmd);
 
         var deferred = q.defer();
 
-        return arduinolastCommandPromise.then(function () {
-
-            arduinolastCommandPromise = deferred.promise;
-            logger.log('sendcommand ' + cmd);
-
-            //q.delay(function () {
-                arduino.write(cmd + '\n', function () {
-                    deferred.resolve();
-                });
-                //return deferred.promise;
-            //}, 10);
-
-            return deferred.promise;
+        arduino.write(cmd + '\n', function () {
+            deferred.resolve();
         });
+
+        return deferred.promise;
     }
 };
 

@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 
 app.get('/tags/on', function (req, res) {
     productTag.on();
-    res.send(200);
+    res.sendStatus(200);
 });
 
 app.get('/tags/:id/on', function (req, res) {
@@ -31,7 +31,7 @@ app.get('/tags/:id/on', function (req, res) {
 
 app.get('/tags/off/', function (req, res) {
     productTag.off();
-    res.send('turn off all tags');
+    res.sendStatus('turn off all tags');
 });
 
 app.get('/tags/:id/off', function (req, res) {
