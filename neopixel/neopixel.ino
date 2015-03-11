@@ -1,11 +1,10 @@
 #include <Adafruit_NeoPixel.h>
 
 #define PRODUCT_NB_LED 11
-#define PRODUCT_PIN 6
+#define PRODUCT_PIN 7
 
 String command;
 Adafruit_NeoPixel *bus;
-uint32_t color = bus->Color(0, 0, 255);
 
 void setup() {
   Serial.begin(115200);
@@ -24,26 +23,14 @@ void loop() {
   {
     command = Serial.readStringUntil('\n');
 
-    Serial.println(command);
+    switch (command[0]) {
 
-    switch (command[1]) {
-
-    case 'O': // led OFF
-      if (command[2] == 'A'){
-        applyOnAllLed(bus, PRODUCT_NB_LED, bus->Color(0, 0, 0));
-      } 
-      else {
-        bus->setPixelColor(command.substring(2).toInt(), bus->Color(0, 0, 0));
-      }
+    case '0': // led OFF
+      changeColor(bus->Color(0, 0, 0));
       break;
 
-    case 'L': // LED ON
-      if (command[2] == 'A'){
-        applyOnAllLed(bus, PRODUCT_NB_LED, color);
-      }
-      else{
-        bus->setPixelColor(command.substring(2).toInt(), color);
-      }
+    case '1': // LED ON
+      changeColor(bus->Color(0, 0, 255));
       break;
 
     case 'S': //SHOW
@@ -54,11 +41,21 @@ void loop() {
   }
 }
 
+void changeColor(uint32_t color) {
+  if (command[1] == 'A') {
+    applyOnAllLed(bus, PRODUCT_NB_LED, color);
+  } 
+  else {
+    bus->setPixelColor(command.substring(1).toInt(), color);
+  }
+}
+
 void applyOnAllLed(Adafruit_NeoPixel *bus, short numPixels, uint32_t c) {
   for (int i = 0 ; i< numPixels; i++){
     bus->setPixelColor(i, c);
   }
 }
+
 
 
 
