@@ -35,11 +35,11 @@ angular.module('data',[]).constant('Data', {
                 segment: [
                     {
                         description: 'plein',
-                        image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
+                        image: 'plein.jpg'
                     },
                     {
                         description: 'platre',
-                        image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
+                        image: 'creux.jpg'
                     }
                 ]
             },
@@ -49,11 +49,11 @@ angular.module('data',[]).constant('Data', {
                 segment: [
                     {
                         description: 'lourd',
-                        image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
+                        image: 'plein.jpg'
                     },
                     {
                         description: 'leger',
-                        image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
+                        image: 'creux.jpg'
                     }
                 ]
             }
