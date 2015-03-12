@@ -10,13 +10,7 @@ angular.module('wikeoApp')
 
             ledsService.turnAllLedsOff();
 
-            ////////////////////////////////////////////////
-            // Filter contents after a click on a segment //
-            $scope.filterSegment = function (criterion, segment) {
-                ledsService.turnAllLedsOff();
-
-                criterion.selectedSegment = segment;
-
+            function filterContents() {
                 $scope.filteredContents = _(Data.products).filter(function(value) {
                     var selectedCriteria = _($scope.criteria).filter(function (criterion){
                         return criterion.selectedSegment;
@@ -25,7 +19,15 @@ angular.module('wikeoApp')
                     return _(selectedCriteria).every(function(criterion){
                         return _(value[criterion.id]).contains(criterion.selectedSegment.description);
                     });
-                })
+                });
+            }
+
+            $scope.filterSegment = function (criterion, segment) {
+                ledsService.turnAllLedsOff();
+
+                criterion.selectedSegment = segment;
+
+                filterContents();
             };
 
             $scope.$watch('filteredContents', function(products) {
@@ -36,10 +38,10 @@ angular.module('wikeoApp')
 
             $scope.resetSegments = function (criterion, position) {
                 delete criterion.selectedSegment;
+
+                filterContents();
             };
 
-            ////////////////////////////
-            // Full screen management //
             $scope.toggleFullScreen = function () {
                 if (!document.fullscreenElement &&    // alternative standard method
                     !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
