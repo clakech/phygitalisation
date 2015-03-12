@@ -4,105 +4,28 @@ angular.module('wikeoApp')
     .controller('SegmentationCtrl', ['$http', '$scope', '$timeout', 'Data',
         function ($http, $scope, $timeout, Data) {
 
-            $scope.currentSegmentsIds = [];
-
-            $scope.criteria = [];
-            $scope.criterionTab = {};
-            $scope.displayFinish = false;
             $scope.contents = Data.products;
-            $scope.totalContentsCount = '';
-
-            ///////////////////////////////////////////////////////////////////////////
-            // Compute segments ids according to selected segments for each criteria //
-            var computeSegmentsIds = function () {
-
-                var criterion = Data.criteriaById[Object.keys(criteriaById)[0]];
-                var selectedSegmentsIds = [];
-                var segment = criterion.selectedSegment;
-
-                if (segment) {
-                    selectedSegmentsIds.push(segment.id);
-
-                    while (segment && segment.mappedContent['next-criterion']) {
-
-                        criterion = Data.criteriaById[segment.mappedContent['next-criterion'][0]['value'][0].href];
-                        segment = criterion.selectedSegment;
-                        if (segment) {
-                            selectedSegmentsIds.push(segment.id);
-                        }
-                    }
-
-                    console.debug('Segments : ');
-                    console.debug(selectedSegmentsIds);
-                }
-
-                return selectedSegmentsIds;
-            };
+            $scope.criteria = _.values(Data.criteriaById);
 
             ////////////////////////////////////////////////
             // Filter contents after a click on a segment //
             $scope.filterSegment = function (criterion, segment) {
-
                 criterion.selectedSegment = segment;
-
-                if (segment.mappedContent['next-criterion']) {
-                    // Needs timeout to properly display enter animation
-                    $timeout(function () {
-                        $scope.criteria.push(Data.criteriaById[segment.mappedContent['next-criterion'][0]['value'][0].href]);
-                        // Compute segments IDs list
-                        $scope.familyHref = angular.copy(familyHref);
-                        $scope.currentSegmentsIds = computeSegmentsIds();
-                    });
-                } else {
-                    // Needs timeout to properly display enter animation
-                    $timeout(function () {
-                        $scope.displayFinish = true;
-                        // Compute segments IDs list
-                        $scope.familyHref = angular.copy(familyHref);
-                        $scope.currentSegmentsIds = computeSegmentsIds();
-                    });
-                }
-
-
             };
 
-            ////////////////////////////////////////////////
-            // Filter contents after a click on a tab criterion //
-            $scope.tabFilterSegment = function (criterion, segment, position) {
+            $scope.filterBySegment = function (value, index) {
 
-                if (criterion.selectedSegment != segment) {
-                    $scope.resetSegments(criterion, position);
-                    $scope.filterSegment(criterion, segment);
-                }
-            };
-
-            //////////////////////////////////////////////////////////////////////
-            // Remove children criterion after a criterion modification request //
-            $scope.resetSegments = function (criterion, position) {
-
-                var criteriaToReset = [];
-                var segment = criterion.selectedSegment;
-
-                criteriaToReset.push(criterion);
-
-                while (segment && segment.mappedContent['next-criterion']) {
-
-                    criterion = Data.criteriaById[segment.mappedContent['next-criterion'][0]['value'][0].href];
-                    criteriaToReset.push(criterion);
-                    segment = criterion.selectedSegment;
-                }
-
-                criteriaToReset.forEach(function (criterion) {
-                    criterion.selectedSegment = null;
+                var selectedCriteria = _($scope.criteria).filter(function (criterion){
+                    return criterion.selectedSegment;
                 });
 
-                // Compute segments IDs list
-                $scope.familyHref = angular.copy(familyHref);
-                $scope.currentSegmentsIds = computeSegmentsIds();
+                return _(selectedCriteria).every(function(criterion){
+                    return _(value[criterion.id]).contains(criterion.selectedSegment.description);
+                });
+            }
 
-                // Remove from UI
-                $scope.displayFinish = false;
-                $scope.criteria.splice(position + 1, $scope.criteria.length);
+            $scope.resetSegments = function (criterion, position) {
+                delete criterion.selectedSegment;
             };
 
             ////////////////////////////
@@ -127,11 +50,5 @@ angular.module('wikeoApp')
                     }
                 }
             };
-
-            ///////////
-            // Inits //
-
-            // Display first criterion
-            $scope.criteria = _.values(Data.criteriaById);
 
         }]);

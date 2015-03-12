@@ -6,7 +6,7 @@ angular.module('data',[]).constant('Data', {
                 price: 0.75,
                 type: 'visser',
                 wall: ['platre'],
-                load: 'medium',
+                load: ['leger'],
                 image: '4-chevilles-vis-a-visser-red-head-12-x-30mm.jpg'
             },
             {
@@ -15,7 +15,7 @@ angular.module('data',[]).constant('Data', {
                 price: 0.15,
                 type: 'frapper',
                 wall: ['plein'],
-                load: 'heavy',
+                load: ['lourd'],
                 image: '4-chevilles-vis-a-visser-red-head-12-x-30mm.jpg'
             },
             {
@@ -24,12 +24,13 @@ angular.module('data',[]).constant('Data', {
                 price: 0.20,
                 type: 'clouer',
                 wall: ['platre','plein'],
-                load: 'medium',
+                load: ['leger'],
                 image: '25-chevilles-a-clouer-outifix-6x40mm-pour-tous-types-de-materiaux.jpg'
             },
         ],
         criteriaById: {
-            '123': {
+            'wall': {
+                id: 'wall',
                 description: 'Type de mur',
                 segment: [
                     {
@@ -37,12 +38,13 @@ angular.module('data',[]).constant('Data', {
                         image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
                     },
                     {
-                        description: 'creux',
+                        description: 'platre',
                         image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
                     }
                 ]
             },
-            '456': {
+            'load': {
+                id: 'load',
                 description: 'poids',
                 segment: [
                     {
