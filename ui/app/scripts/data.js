@@ -112,11 +112,11 @@ angular.module('data',[]).constant('Data', {
                 segment: [
                     {
                         description: 'lourd',
-                        image: 'plein.jpg'
+                        image: 'poids-lourd.jpeg'
                     },
                     {
                         description: 'leger',
-                        image: 'creux.jpg'
+                        image: 'poids-leger.jpeg'
                     }
                 ]
             }
