@@ -111,7 +111,7 @@
           <div class="card green">
             <div class="card-content">
               <p class="valign finish-message grey-text text-lighten-5 ">
-                {{totalContentsCount}} produits correspondent à vos critères !
+                {{contents.length}} produits correspondent à vos critères !
               </p>
             </div>
           </div>
@@ -134,8 +134,41 @@
           </div>
         </div>
       </div>
-      <div class="products" contents-list current-segments-ids="currentSegmentsIds" content-href="familyHref" boost="boost" total-contents-count="totalContentsCount">
-      </div>
+        <div class="col s12">
+            <h4 class="green-text">{{contents.length}} Articles correspondants :</h4>
+
+            <div class="row">
+                <ul class="contents-list">
+                    <li ng-repeat="content in contents" class="animate-repeat col s4 product-container shadowed">
+
+                        <div class="card product" ng-class="content.modelType">
+                            <div class="card-image product-image image-ratio-preserved-inside">
+
+                                <img ng-src="{{'images/' + content.image}}">
+                            </div>
+                            <div class="card-content">
+                                <div class="title" title="{{content.name}}">
+                                    <div class="title-mask">&nbsp;</div>
+                                    {{content.name}}
+                                </div>
+                                <div class="subtitle grey-text text-lighten-1" title="{{content.id}}">
+                                    <div class="subtitle-mask">&nbsp;</div>
+                                    {{content.id}}
+                                </div>
+                                <div class="price orange-text darken-4-text">
+                                    {{content.price ? content.price + '€' : '&nbsp;'}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="led-image" ng-if="hasLed(content.id)">
+                            <img src="images/led.png"/>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
     </div>
   </section>
 </div>

@@ -27,6 +27,34 @@ angular.module('data',[]).constant('Data', {
                 load: 'medium',
                 image: '25-chevilles-a-clouer-outifix-6x40mm-pour-tous-types-de-materiaux.jpg'
             },
-        ]
+        ],
+        criteriaById: {
+            '123': {
+                description: 'Type de mur',
+                segment: [
+                    {
+                        description: 'plein',
+                        image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
+                    },
+                    {
+                        description: 'creux',
+                        image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
+                    }
+                ]
+            },
+            '456': {
+                description: 'poids',
+                segment: [
+                    {
+                        description: 'lourd',
+                        image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
+                    },
+                    {
+                        description: 'leger',
+                        image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'
+                    }
+                ]
+            }
+        }
     }
 );

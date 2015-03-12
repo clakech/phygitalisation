@@ -1,27 +1,22 @@
 'use strict';
 
 angular.module('wikeoApp')
-    .controller('SegmentationCtrl', ['$http', '$scope', '$timeout',
-        function ($http, $scope, $timeout) {
-
-            var criteriaById = {
-                '123': {description: 'matière', segment: [{description: 'bois', image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'}, {description: 'métal', image: 'http://ser36.ovh.wikeo.webadeo.net/images/49/9d/poncage.jpg'}]},
-                '456': {description: 'forme'}
-            };
+    .controller('SegmentationCtrl', ['$http', '$scope', '$timeout', 'Data',
+        function ($http, $scope, $timeout, Data) {
 
             $scope.currentSegmentsIds = [];
 
             $scope.criteria = [];
             $scope.criterionTab = {};
             $scope.displayFinish = false;
-
-            $scope.totalContentsCount = '...';
+            $scope.contents = Data.products;
+            $scope.totalContentsCount = '';
 
             ///////////////////////////////////////////////////////////////////////////
             // Compute segments ids according to selected segments for each criteria //
             var computeSegmentsIds = function () {
 
-                var criterion = criteriaById[Object.keys(criteriaById)[0]];
+                var criterion = Data.criteriaById[Object.keys(criteriaById)[0]];
                 var selectedSegmentsIds = [];
                 var segment = criterion.selectedSegment;
 
@@ -30,7 +25,7 @@ angular.module('wikeoApp')
 
                     while (segment && segment.mappedContent['next-criterion']) {
 
-                        criterion = criteriaById[segment.mappedContent['next-criterion'][0]['value'][0].href];
+                        criterion = Data.criteriaById[segment.mappedContent['next-criterion'][0]['value'][0].href];
                         segment = criterion.selectedSegment;
                         if (segment) {
                             selectedSegmentsIds.push(segment.id);
@@ -53,7 +48,7 @@ angular.module('wikeoApp')
                 if (segment.mappedContent['next-criterion']) {
                     // Needs timeout to properly display enter animation
                     $timeout(function () {
-                        $scope.criteria.push(criteriaById[segment.mappedContent['next-criterion'][0]['value'][0].href]);
+                        $scope.criteria.push(Data.criteriaById[segment.mappedContent['next-criterion'][0]['value'][0].href]);
                         // Compute segments IDs list
                         $scope.familyHref = angular.copy(familyHref);
                         $scope.currentSegmentsIds = computeSegmentsIds();
@@ -92,7 +87,7 @@ angular.module('wikeoApp')
 
                 while (segment && segment.mappedContent['next-criterion']) {
 
-                    criterion = criteriaById[segment.mappedContent['next-criterion'][0]['value'][0].href];
+                    criterion = Data.criteriaById[segment.mappedContent['next-criterion'][0]['value'][0].href];
                     criteriaToReset.push(criterion);
                     segment = criterion.selectedSegment;
                 }
@@ -137,12 +132,6 @@ angular.module('wikeoApp')
             // Inits //
 
             // Display first criterion
-            var firstCriterion = criteriaById[Object.keys(criteriaById)[0]];
-            var secondCriterion = criteriaById[Object.keys(criteriaById)[1]];
-            //if (!secondCriterion || firstCriterion.model.href === secondCriterion.model.href) {
-                $scope.criteria = [firstCriterion];
-            //} else {
-            //    $scope.criterionTab.criterion = firstCriterion;
-            //    $scope.filterSegment(firstCriterion, firstCriterion.segment[0]);
-            //}
+            $scope.criteria = _.values(Data.criteriaById);
+
         }]);
