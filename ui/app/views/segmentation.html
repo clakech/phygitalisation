@@ -1,164 +1,100 @@
 <div class="grey lighten-3">
 
-  <section class="products-section">
+    <section class="products-section">
 
-    <div class="segmentation">
-      <h4 class="green-text" ng-click="toggleFullScreen();">Bien choisir :</h4>
+        <div class="segmentation">
+            <h4 class="green-text" ng-click="toggleFullScreen();">Bien choisir :</h4>
 
-      <div ng-if="criterion.length == 0" class="col s12 center valign-demo valign-wrapper">
-        <div class="preloader-wrapper big active">
-          <div class="spinner-layer spinner-blue">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
+            <div class="criteria row">
+                <div ng-repeat="criterion in criteria track by $index" class="criterion animate-repeat col s12">
+                    <div class="card"
+                         ng-class="{clickable: criterion.selectedSegment}">
 
-          <div class="spinner-layer spinner-red">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
+                        <div class="card-content">
 
-          <div class="spinner-layer spinner-yellow">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
+                            <div class="criterion-title">
+                                {{criterion.description}}
+                                <div class="icon-create" ng-show="criterion.selectedSegment"
+                                     ng-click="resetSegments(criterion, $index);"></div>
+                            </div>
 
-          <div class="spinner-layer spinner-green">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="criteria row">
-        <div ng-repeat="criterion in criteria track by $index" class="criterion animate-repeat col s12">
-          <div class="card"
-               ng-class="{clickable: criterion.selectedSegment}">
+                            <div class="selected-segment ng-animate text-grey text-lighten-5 green"
+                                 ng-show="criterion.selectedSegment" ng-click="resetSegments(criterion, $index);">
+                                {{criterion.selectedSegment.description}}&nbsp;
+                            </div>
 
-            <div class="card-content">
+                            <div class="segments" ng-hide="criterion.selectedSegment">
+                                <div class="segment" ng-repeat="segment in criterion.segment"
+                                     ng-click="filterSegment(criterion, segment);">
 
-              <div class="criterion-title">
-                {{criterion.description}}
-                <div class="icon-create" ng-show="criterion.selectedSegment" ng-click="resetSegments(criterion, $index);"></div>
-              </div>
+                                    <div class="segment-image image-ratio-preserved"
+                                         ng-class="{hide: !segment.image}"
+                                         style="{{'background-image: url(' + segment.image + ');'}}">
+                                    </div>
 
-              <div
-                class="selected-segment ng-animate text-grey text-lighten-5 green"
-                ng-show="criterion.selectedSegment" ng-click="resetSegments(criterion, $index);">
-                {{criterion.selectedSegment.description}}&nbsp;
-              </div>
+                                    <div class="segment-info">
+                                        <div class="segment-description"
+                                             ng-if="segment.description"
+                                             title="{{segment.description}}">
 
-              <div class="segments" ng-hide="criterion.selectedSegment">
-                <div class="segment" ng-repeat="segment in criterion.segment"
-                     ng-click="filterSegment(criterion, segment);">
+                                            <div class="segment-description-mask">&nbsp;</div>
+                                            {{segment.description}}
+                                        </div>
 
-                  <div class="segment-image image-ratio-preserved"
-                       ng-class="{hide: !segment.image}"
-                       style="{{'background-image: url(' + segment.image + ');'}}">
-                  </div>
+                                        <div class="segment-button waves-effect waves-light btn grey-text text-lighten-5 green"
+                                             title="{{segment.description}}">
+                                            {{segment.description}}
+                                        </div>
 
-                  <div class="segment-info">
-                    <div class="segment-description"
-                         ng-if="segment.description"
-                         title="{{segment.description}}">
+                                    </div>
 
-                      <div class="segment-description-mask">&nbsp;</div>
-                      {{segment.description}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="segment-button waves-effect waves-light btn grey-text text-lighten-5 green"
-                         title="{{segment.description}}">
-                      {{segment.description}}
-                    </div>
-
-                  </div>
-
                 </div>
-              </div>
+
             </div>
-          </div>
         </div>
+        <div class="content-bloc">
 
-      </div>
-    </div>
-    <div class="content-bloc">
-      <div ng-if="criterionTab.criterion">
-        <div ng-class="{clickable: criterionTab.criterion.selectedSegment}">
-          <div class="tab" >
-            <div class="tab-segment" ng-repeat="segment in criterionTab.criterion.segment"
-                ng-click="tabFilterSegment(criterionTab.criterion, segment, -1);">
+            <div class="col s12">
+                <h4 class="green-text">{{filteredContents.length}} Articles correspondants :</h4>
 
-              <div class="tab-button segment-button waves-effect waves-light btn grey-text text-lighten-5 grey"
-                      ng-class="{ active: criterionTab.criterion.selectedSegment.href===segment.href}"
-                       title="{{segment.description}}">
-                    {{segment.description}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="col s12">
-            <h4 class="green-text">Articles correspondants :</h4>
+                <div class="row">
+                    <ul class="contents-list">
+                        <li ng-repeat="content in filteredContents"
+                            class="animate-repeat col s4 product-container shadowed">
 
-            <div class="row">
-                <ul class="contents-list">
-                    <li ng-repeat="content in contents | filter:filterBySegment" class="animate-repeat col s4 product-container shadowed">
+                            <div class="card product" ng-class="content.modelType">
+                                <div class="card-image product-image image-ratio-preserved-inside">
 
-                        <div class="card product" ng-class="content.modelType">
-                            <div class="card-image product-image image-ratio-preserved-inside">
-
-                                <img ng-src="{{'images/' + content.image}}">
-                            </div>
-                            <div class="card-content">
-                                <div class="title" title="{{content.name}}">
-                                    <div class="title-mask">&nbsp;</div>
-                                    {{content.name}}
+                                    <img ng-src="{{'images/' + content.image}}">
                                 </div>
-                                <div class="subtitle grey-text text-lighten-1" title="{{content.id}}">
-                                    <div class="subtitle-mask">&nbsp;</div>
-                                    {{content.id}}
-                                </div>
-                                <div class="price orange-text darken-4-text">
-                                    {{content.price ? content.price + '€' : '&nbsp;'}}
+                                <div class="card-content">
+                                    <div class="title" title="{{content.name}}">
+                                        <div class="title-mask">&nbsp;</div>
+                                        {{content.name}}
+                                    </div>
+                                    <div class="subtitle grey-text text-lighten-1" title="{{content.id}}">
+                                        <div class="subtitle-mask">&nbsp;</div>
+                                        {{content.id}}
+                                    </div>
+                                    <div class="price orange-text darken-4-text">
+                                        {{content.price ? content.price + '€' : '&nbsp;'}}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="led-image" ng-if="hasLed(content.id)">
-                            <img src="images/led.png"/>
-                        </div>
-                    </li>
-                </ul>
+                            <div class="led-image" ng-if="hasLed(content.id)">
+                                <img src="images/led.png"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-
         </div>
-    </div>
-  </section>
+    </section>
 </div>
 
