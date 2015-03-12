@@ -8,7 +8,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngDialog'
+    'ngDialog',
+    'data'
   ])
   .config(function ($routeProvider) {
     $routeProvider
