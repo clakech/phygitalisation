@@ -36,6 +36,7 @@ h4 {
   padding-left: 10px;
 
   .criteria {
+    max-width: 350px;
 
     & .criterion:not(:first-child) .card {
       position: relative;
