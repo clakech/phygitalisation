@@ -3,11 +3,8 @@ var q = require('q');
 
 var arduino;
 
-var setArduinoCommand = function (arduinoCommand) {
+var Ledstrip = function (arduinoCommand) {
     arduino = arduinoCommand;
-};
-
-var Ledstrip = function () {
 };
 
 Ledstrip.prototype.on = function (led) {
@@ -33,6 +30,5 @@ Ledstrip.prototype.command = function (command) {
 };
 
 module.exports = {
-    Ledstrip: Ledstrip,
-    setArduinoCommand: setArduinoCommand
+    Ledstrip: Ledstrip
 };

@@ -6,7 +6,7 @@ var app = express();
 var _ = require('underscore');
 var logger = require('util');
 
-var productTag;
+var leds;
 
 app.use(cors());
 
@@ -15,12 +15,12 @@ app.get('/', function (req, res) {
 });
 
 app.get('/leds/:id/on', function (req, res) {
-    productTag.on(req.params.id);
+    leds.on(req.params.id);
     res.sendStatus(200);
 });
 
 app.get('/leds/off/', function (req, res) {
-    productTag.off();
+    leds.off();
     res.sendStatus(200);
 });
 
@@ -29,8 +29,8 @@ var server = app.listen(3000, function () {
 });
 
 module.exports = {
-    setTags: function (_productTag) {
-        productTag = _productTag;
+    setLEDs: function (ledstrip) {
+        leds = ledstrip;
         logger.log('Ready !');
     }
 };

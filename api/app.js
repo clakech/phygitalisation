@@ -13,11 +13,9 @@ if (config.mock) {
 
 ledStripPromise.then(function (arduino) {
 
-    ledstrip.setArduinoCommand(arduino);
+    var ledStrip = new ledstrip.Ledstrip(arduino);
 
-    var productTag = new ledstrip.Ledstrip(11);
-
-    expressApp.setTags(productTag);
+    expressApp.setLEDs(ledStrip);
 });
 
 
