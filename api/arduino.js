@@ -57,7 +57,7 @@ function connectMock() {
         }
     };
 
-    return when(arduinoCommand);
+    return q.when(arduinoCommand);
 }
 
 module.exports = {

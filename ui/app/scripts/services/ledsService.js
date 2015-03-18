@@ -6,7 +6,7 @@ angular.module('wikeoApp')
         this.turnLedOn = function (id) {
 
             return $http.get(
-                'http://localhost:3000/tags/' + id + '/on/'
+                'http://localhost:3000/leds/' + id + '/on/'
             )
                 .then(function (response) {
                     console.info('Led ' + id + ' turned on');
@@ -21,7 +21,7 @@ angular.module('wikeoApp')
         this.turnAllLedsOff = function () {
 
             return $http.get(
-                'http://localhost:3000/tags/off/'
+                'http://localhost:3000/leds/off/'
             )
                 .then(function () {
                     console.info('Leds turned off');
