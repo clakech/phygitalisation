@@ -3,30 +3,24 @@ var q = require('q');
 
 var arduino;
 
+function command(command) {
+    return arduino.sendCommand(command);
+};
+
 var Ledstrip = function (arduinoCommand) {
     arduino = arduinoCommand;
 };
 
 Ledstrip.prototype.on = function (led) {
-    var self = this;
-    return this.command('1' + led).then(function () {
-        return self.show();
+    return command('1' + led).then(function () {
+        return command('S');
     });
 };
 
 Ledstrip.prototype.off = function () {
-    var self = this;
-    return self.command('0A').then(function () {
-        return self.show();
+    return command('0A').then(function () {
+        return command('S');
     });
-};
-
-Ledstrip.prototype.show = function () {
-    return this.command('S');
-};
-
-Ledstrip.prototype.command = function (command) {
-    return arduino.sendCommand(command);
 };
 
 module.exports = {
