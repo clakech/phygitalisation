@@ -74,14 +74,14 @@
                                 <div class="card-content">
                                     <div class="title" style="height:50px;" title="{{content.name}}">
                                         <div class="title-mask">&nbsp;</div>
-                                        {{content.name}}
+                                        {{content.name}} <br/>{{content.size}}
                                     </div>
                                     <div class="subtitle grey-text text-lighten-1" title="{{content.id}}">
                                         <div class="subtitle-mask">&nbsp;</div>
-                                        {{content.id}}
+                                        ref: {{content.id}}
                                     </div>
                                     <div class="price orange-text darken-4-text">
-                                        {{content.price ? content.price + '€' : '&nbsp;'}}
+                                        prix: {{content.price ? content.price + '€' : '&nbsp;'}}
                                     </div>
                                 </div>
                             </div>

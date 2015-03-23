@@ -3,16 +3,18 @@ angular.module('data', []).constant('Data', {
         products: [
             {
                 id: 1,
-                name: '15 chevilles + vis 14x55mm',
+                name: '15 chevilles + vis',
+                size: '14x55mm',
                 price: 41.90,
-                type: ['frapper'],
+                type: ['expansion'],
                 wall: ['creux', 'plein'],
                 load: ['lourd'],
                 image: '15-chevilles-vis-a-expansion-outifix-14x55mm-pour-multi-materiaux.jpg'
             },
             {
                 id: 2,
-                name: '2 Chevilles + tirefonds 14 x 80mm',
+                name: '2 Chevilles + tirefonds',
+                size: '14x80mm',
                 price: 3.80,
                 type: ['expansion'],
                 wall: ['plein'],
@@ -21,7 +23,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 3,
-                name: '10 chevilles + vis 4x30mm',
+                name: '10 chevilles + vis',
+                size: '4x30mm',
                 price: 3.65,
                 type: ['clouer'],
                 wall: ['creux'],
@@ -30,7 +33,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 4,
-                name: '2 chevilles + vis 15x50mm',
+                name: '2 chevilles + vis',
+                size: '15x50mm',
                 price: 6.95,
                 type: ['expansion'],
                 wall: ['plein'],
@@ -39,7 +43,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 5,
-                name: '8 Chevilles + vis à visser 13 x 31mm',
+                name: '8 Chevilles + vis à visser',
+                size: '13x31mm',
                 price: 2.65,
                 type: ['visser'],
                 wall: ['creux'],
@@ -48,34 +53,38 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 6,
-                name: '60 chevilles à frapper 6x40',
+                name: '60 chevilles à frapper',
+                size: '6x40mm',
                 price: 7.10,
-                type: ['clouer'],
+                type: ['frapper'],
                 wall: ['plein'],
                 load: ['lourd'],
                 image: '60-chevilles-vis-a-frapper-standers-6-x-40mm.jpg'
             },
             {
                 id: 7,
-                name: '75 chevilles à frapper 6x80',
+                name: '75 chevilles à frapper',
+                size: '6x80mm',
                 price: 11.50,
-                type: ['clouer'],
+                type: ['frapper'],
                 wall: ['plein'],
                 load: ['lourd'],
                 image: '75-chevilles-vis-a-frapper-standers-6-x-80mm.jpg'
             },
             {
                 id: 8,
-                name: '20 chevilles à frapper 5x30',
+                name: '20 chevilles à frapper',
+                size: '5x30mm',
                 price: 4.10,
-                type: ['clouer'],
+                type: ['frapper'],
                 wall: ['plein'],
                 load: ['lourd'],
                 image: '20-chevilles-vis-a-frapper-standers-5-x-30mm.jpg'
             },
             {
                 id: 9,
-                name: '50 chevilles + vis à expansion 4x40',
+                name: '50 chevilles + vis à expansion',
+                size: '4x40mm',
                 price: 6.12,
                 type: ['expansion'],
                 wall: ['creux'],
@@ -84,7 +93,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 10,
-                name: '50 chevilles + vis à expansion 5x40',
+                name: '50 chevilles + vis à expansion',
+                size: '5x40mm',
                 price: 7.10,
                 type: ['expansion'],
                 wall: ['creux'],
@@ -93,7 +103,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 11,
-                name: '50 chevilles + vis à expansion 6x40',
+                name: '50 chevilles + vis à expansion',
+                size: '6x40mm',
                 price: 8.10,
                 type: ['expansion'],
                 wall: ['creux'],
@@ -102,7 +113,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 12,
-                name: '50 chevilles + vis à expansion 6x45',
+                name: '50 chevilles + vis à expansion',
+                size: '6x45mm',
                 price: 9.10,
                 type: ['expansion'],
                 wall: ['creux'],
@@ -111,7 +123,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 13,
-                name: '50 chevilles + vis à expansion 6x58',
+                name: '50 chevilles + vis à expansion',
+                size: '6x58mm',
                 price: 10.10,
                 type: ['expansion'],
                 wall: ['creux'],
@@ -120,7 +133,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 14,
-                name: '20 Chevilles + vis 9 x 27mm',
+                name: '20 Chevilles + vis',
+                size: '9x27mm',
                 price: 2.65,
                 type: ['visser'],
                 wall: ['creux'],
@@ -129,7 +143,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 15,
-                name: '25 chevilles à expansion 6x25mm',
+                name: '25 chevilles à expansion',
+                size: '6x25mm',
                 price: 2.95,
                 type: ['expansion'],
                 wall: ['creux', 'plein'],
@@ -138,7 +153,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 16,
-                name: '10 chevilles + vis à expansion 10 x 50 mm',
+                name: '10 chevilles + vis à expansion',
+                size: '10x50mm',
                 price: 2.70,
                 type: ['expansion'],
                 wall: ['creux', 'plein'],
@@ -147,7 +163,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 17,
-                name: '100 chevilles rouges + vis 6 mm',
+                name: '100 chevilles rouges + vis',
+                size: '6mm',
                 price: 3.70,
                 type: ['expansion'],
                 wall: ['creux', 'plein'],
@@ -156,7 +173,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 18,
-                name: '100 chevilles bleus + vis 8 mm',
+                name: '100 chevilles bleus + vis',
+                size: '8mm',
                 price: 4.70,
                 type: ['expansion'],
                 wall: ['creux', 'plein'],
@@ -165,7 +183,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 19,
-                name: '100 chevilles beige + vis 5 mm',
+                name: '100 chevilles beige + vis',
+                size: '5mm',
                 price: 2.70,
                 type: ['expansion'],
                 wall: ['creux', 'plein'],
@@ -174,7 +193,8 @@ angular.module('data', []).constant('Data', {
             },
             {
                 id: 20,
-                name: '50 chevilles à clouer 5 mm',
+                name: '50 chevilles à clouer',
+                size: '5mm',
                 price: 1.40,
                 type: ['clouer'],
                 wall: ['creux', 'plein'],
