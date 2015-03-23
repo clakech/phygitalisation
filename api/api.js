@@ -1,18 +1,10 @@
-'use strict';
-
-var express = require('express');
 var cors = require('cors');
-var app = express();
-var _ = require('underscore');
+var app = require('express')();
 var logger = require('util');
 
 var leds;
 
 app.use(cors());
-
-app.get('/', function (req, res) {
-    res.send('Hi Devoxx France!');
-});
 
 app.get('/leds/:id/on', function (req, res) {
     leds.on(req.params.id);

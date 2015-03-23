@@ -6,8 +6,8 @@ var q = require('q');
 var arduino = null;
 
 var arduinoCommand = {
-    sendCommand: function (cmd) {
-        logger.log('sendcommand ' + cmd);
+    send: function (cmd) {
+        logger.log('send ' + cmd);
 
         var deferred = q.defer();
 
@@ -30,17 +30,9 @@ function connect(arduinoAddress) {
 
     arduino.open(function (error) {
         if (error) {
-            logger.log('failed to open: ' + error);
             deferred.reject(error);
         } else {
-            logger.log('open');
-            arduino.on('data', function (data) {
-                logger.log('data received: ' + data);
-            });
-
-            setTimeout(function () {
-                deferred.resolve(arduinoCommand)
-            }, 2000);
+            deferred.resolve(arduinoCommand)
         }
     });
 
@@ -48,15 +40,11 @@ function connect(arduinoAddress) {
 }
 
 function connectMock() {
-
-    logger.log('open MOCK');
     arduino = {
         write: function (data, callback) {
-            logger.log('MOCK send data :' + data);
             callback();
         }
     };
-
     return q.when(arduinoCommand);
 }
 
