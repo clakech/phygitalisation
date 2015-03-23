@@ -60,19 +60,19 @@ h4 {
         position: relative;
 
         &.ng-hide-add, &.ng-hide-remove {
-          display: block!important;
+          display: block !important;
         }
 
         &.ng-hide-add.ng-hide-add-active,
         &.ng-hide-remove {
-          transform: translate(100px,0);
+          transform: translate(100px, 0);
           transition: all ease-in-out 0.2s;
           -webkit-transition: all linear 0.2s;
         }
 
         &.ng-hide-add,
         &.ng-hide-remove.ng-hide-remove-active {
-          transform: translate(0,0);
+          transform: translate(0, 0);
         }
       }
 
@@ -181,19 +181,19 @@ h4 {
   }
 
   .animate-repeat.ng-enter .card {
-    transform: translate(-500px,0);
+    transform: translate(-500px, 0);
   }
 
   .animate-repeat.ng-leave .card {
-    transform: translate(0,0);
+    transform: translate(0, 0);
   }
 
   .animate-repeat.ng-enter.ng-enter-active .card {
-    transform: translate(0,0);
+    transform: translate(0, 0);
   }
 
   .animate-repeat.ng-leave.ng-leave-active .card {
-    transform: translate(-500px,0);
+    transform: translate(-500px, 0);
   }
 }
 
@@ -295,28 +295,6 @@ h4 {
         right: $card-padding/2;
       }
 
-      /* This style looks like the card was disabled
-      &.shadowed {
-        background-color: color("grey", "lighten-3");
-
-        .title-mask {
-          background: linear-gradient(to right, rgba(255, 255, 255, 0), color("grey", "lighten-3"));
-        }
-
-        .subtitle-mask {
-          background: linear-gradient(to right, rgba(255, 255, 255, 0), color("grey", "lighten-3"));
-        }
-
-        .product-image {
-          -webkit-filter: grayscale(1);
-          filter: grayscale(1);
-        }
-
-        .price {
-          color: color("grey", "darken-1") !important;
-        }
-      }*/
-
       &.Serie {
         position: relative;
         top: 14px;
@@ -350,7 +328,7 @@ h4 {
         }
 
         .subtitle {
-          color: color("green", "darken-1")!important;
+          color: color("green", "darken-1") !important;
           max-height: 63px;
         }
 
@@ -375,27 +353,6 @@ h4 {
     }
   }
 
-  /*.animate-repeat .card {
-    -webkit-transition: opacity ease-out 0.1s;
-    transition: opacity ease-out 0.1s;
-  }
-
-  .animate-repeat.ng-enter .card {
-    opacity: 0;
-  }
-
-  .animate-repeat.ng-leave .card {
-    opacity: 1;
-  }
-
-  .animate-repeat.ng-enter.ng-enter-active .card {
-    opacity: 1;
-  }
-
-  .animate-repeat.ng-leave.ng-leave-active .card {
-    opacity: 0;
-  }*/
-
 }
 
 .details-container {
@@ -404,7 +361,7 @@ h4 {
   line-height: normal;
   position: relative;
 
-  &>* {
+  & > * {
     display: inline-block;
   }
 
@@ -421,7 +378,7 @@ h4 {
     right: -2*$card-padding;
   }
 
-    .action-btn {
+  .action-btn {
     display: inline-block;
     height: 36px;
     margin-bottom: 15px;
@@ -519,11 +476,11 @@ h4 {
 }
 
 .ngStlViewer {
-    display: inline-block;
-    min-width: 400px;
-    min-height: 400px;
-    width: 400px;
-    height: 400px;
+  display: inline-block;
+  min-width: 400px;
+  min-height: 400px;
+  width: 400px;
+  height: 400px;
 }
 
 .tab {
@@ -534,13 +491,12 @@ h4 {
 }
 
 .tab-segment {
-    display: inline-block;
-    margin : auto;
+  display: inline-block;
+  margin: auto;
 }
 
 .tab-button {
   margin-right: 20px;
-  
 
   &.active {
     background: #4CAF50 !important;

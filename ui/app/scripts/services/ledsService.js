@@ -1,28 +1,23 @@
 'use strict';
 
 angular.module('wikeoApp')
-    .service('ledsService', ['$http', "$q", function ($http, $q) {
+    .constant('API', {url: 'http://localhost:3000/leds/'})
+    .service('ledsService', ['$http', "$q", "API", function ($http, $q, API) {
 
         this.turnLedOn = function (id) {
 
-            return $http.get(
-                'http://localhost:3000/leds/' + id + '/on/'
-            )
-                .then(function (response) {
+            return $http.get(API.url + id + '/on/')
+                .then(function () {
                     console.info('Led ' + id + ' turned on');
-                    return response.data;
                 })
                 .catch(function () {
                     console.error('Could not turn led ' + id + ' on');
-                    return $q.reject();
                 });
         };
 
         this.turnAllLedsOff = function () {
 
-            return $http.get(
-                'http://localhost:3000/leds/off/'
-            )
+            return $http.get(API.url + 'off/')
                 .then(function () {
                     console.info('Leds turned off');
                 })
