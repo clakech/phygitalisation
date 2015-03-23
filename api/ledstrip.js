@@ -1,24 +1,19 @@
-var _ = require('underscore');
-var q = require('q');
-
-var arduino;
-
 var Ledstrip = function (arduinoCommand) {
-    arduino = arduinoCommand;
+    this.arduino = arduinoCommand;
 };
 
 Ledstrip.prototype.on = function (led) {
-    return arduino.send('1' + led).then(function () {
-        return arduino.send('S');
+    var self = this;
+    return this.arduino.send('1' + led).then(function () {
+        return self.arduino.send('S');
     });
 };
 
 Ledstrip.prototype.off = function () {
-    return arduino.send('0A').then(function () {
-        return arduino.send('S');
+    var self = this;
+    return this.arduino.send('0').then(function () {
+        return self.arduino.send('S');
     });
 };
 
-module.exports = {
-    Ledstrip: Ledstrip
-};
+module.exports = Ledstrip;

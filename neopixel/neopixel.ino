@@ -22,12 +22,14 @@ void loop() {
 
     switch (command[0]) {
 
-    case '0': // led OFF
-      changeColor(command, bus->Color(0, 0, 0));
+    case '0': // leds OFF
+      for (int i = 0 ; i < NB_LED; i++){
+        bus->setPixelColor(i, bus->Color(0, 0, 0));
+      }
       break;
 
     case '1': // LED ON
-      changeColor(command, bus->Color(0, 0, 255));
+      bus->setPixelColor(command.substring(1).toInt(), bus->Color(0, 0, 255));
       break;
 
     case 'S': //SHOW
@@ -38,16 +40,6 @@ void loop() {
   }
 }
 
-void changeColor(String command, uint32_t color) {
-  if (command[1] == 'A') {
-    for (int i = 0 ; i < NB_LED; i++){
-      bus->setPixelColor(i, color);
-    }
-  } 
-  else {
-    bus->setPixelColor(command.substring(1).toInt(), color);
-  }
-}
 
 
 
