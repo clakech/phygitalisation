@@ -6,12 +6,16 @@ var arduinoAddress = '/dev/tty.usbserial-A96TTZ3N'; // /dev/ttyAMA0 CLH:/dev/tty
 
 var ledStripPromise = arduino.connect(arduinoAddress); // arduino.connectMock();
 
-ledStripPromise.then(function (arduino) {
+ledStripPromise
 
-    var ledStrip = new ledstrip.Ledstrip(arduino);
+    .then(function (arduino) {
+        var ledStrip = new ledstrip.Ledstrip(arduino);
+        expressApp.setLEDs(ledStrip);
+    })
 
-    expressApp.setLEDs(ledStrip);
-});
+    .catch(function (error) {
+        console.log(error);
+    });
 
 
 
