@@ -32,7 +32,7 @@ angular.module('wikeoApp')
 
             $scope.$watch('filteredContents', function(products) {
                 _(products).each(function(product) {
-                    ledsService.turnLedOn(product.id);
+                    ledsService.turnLedOn(product.led);
                 })
             });
 
