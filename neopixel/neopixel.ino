@@ -1,6 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 
-#define NB_LED 11
+#define NB_LED 60
 #define PIN 7
 
 Adafruit_NeoPixel *bus;
