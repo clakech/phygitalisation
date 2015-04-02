@@ -1,0 +1,24 @@
+<ion-view view-title="{{filteredContents.length}} Articles">
+    <ion-nav-buttons side="primary">
+        <button class="button" ng-click="showFilters()">
+            Filter
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+
+        <div class="list card" ng-repeat="content in filteredContents">
+            <div class="item item-divider">{{content.name}} {{content.size}}</div>
+            <div class="item item-body">
+                <img class="full-image" ng-src="{{'img/' + content.image}}">
+
+                <div>
+                    ref: {{content.id}}
+                </div>
+                <div>
+                    prix: {{content.price ? content.price + '€' : '&nbsp;'}}
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
