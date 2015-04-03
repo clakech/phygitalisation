@@ -1,0 +1,76 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Filtres</h1>
+
+        <div class="buttons">
+            <button class="button" ng-click="hideFilters()">OK</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+
+        <div class="list card" ng-repeat="criterion in criteria track by $index">
+            <div class="item item-divider">{{criterion.description}}</div>
+            <div class="item item-body">
+                <form>
+                    <div ng-repeat="segment in criterion.segment">
+                        <ion-radio ng-model="criterion.selectedSegment" ng-value="segment.description">
+                            {{segment.description}}
+                        </ion-radio>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- <div class="list card" ng-repeat="criterion in criteria track by $index">
+
+            <div class="card"
+                 ng-class="{clickable: criterion.selectedSegment}">
+
+                <div class="card-content">
+
+                    <div class="criterion-title">
+                        {{criterion.description}}
+                        <div class="icon-create" ng-show="criterion.selectedSegment"
+                             ng-click="resetSegments(criterion, $index);"></div>
+                    </div>
+
+                    <div class="selected-segment ng-animate text-grey text-lighten-5 green"
+                         ng-show="criterion.selectedSegment" ng-click="resetSegments(criterion, $index);">
+                        {{criterion.selectedSegment.description}}&nbsp;
+                    </div>
+
+                    <div class="segments" ng-hide="criterion.selectedSegment">
+                        <div class="card segment" ng-repeat="segment in criterion.segment"
+                             ng-click="filterSegment(criterion, segment);">
+
+                            <div class="card-image segment-image"
+                                 ng-class="{hide: !segment.image}">
+                                <img ng-src="{{'images/' + segment.image}}">
+                            </div>
+
+                            <div class="segment-info">
+                                <div class="segment-description"
+                                     ng-if="segment.description"
+                                     title="{{segment.description}}">
+
+                                    <div class="segment-description-mask">&nbsp;</div>
+                                    {{segment.description}}
+                                </div>
+
+                                <div class="segment-button waves-effect waves-light btn grey-text text-lighten-5 green"
+                                     title="{{segment.description}}">
+                                    {{segment.description}}
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
+
+    </ion-content>
+</ion-modal-view>

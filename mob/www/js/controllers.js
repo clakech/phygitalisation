@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
-    .controller('DashCtrl', ['$http', '$scope', '$timeout', 'Data', 'ledsService',
-        function ($http, $scope, $timeout, Data, ledsService) {
+    .controller('DashCtrl', ['$http', '$scope', '$timeout', 'Data', 'ledsService', '$ionicModal',
+        function ($http, $scope, $timeout, Data, ledsService, $ionicModal) {
 
             $scope.filteredContents = Data.products;
 
@@ -16,12 +16,13 @@ angular.module('starter.controllers', [])
                     });
 
                     return _(selectedCriteria).every(function (criterion) {
-                        return _(value[criterion.id]).contains(criterion.selectedSegment.description);
+                        return _(value[criterion.id]).contains(criterion.selectedSegment);
                     });
                 });
-            }
+            };
 
             $scope.filterSegment = function (criterion, segment) {
+                console.log('filterSegment');
                 ledsService.turnAllLedsOff();
 
                 criterion.selectedSegment = segment;
@@ -38,6 +39,22 @@ angular.module('starter.controllers', [])
             $scope.resetSegments = function (criterion) {
                 delete criterion.selectedSegment;
 
+                filterContents();
+            };
+
+            $ionicModal.fromTemplateUrl('templates/filters.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function(modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.showFilters = function($event) {
+                $scope.modal.show($event);
+            };
+
+            $scope.hideFilters = function($event) {
+                $scope.modal.hide($event);
                 filterContents();
             };
 
